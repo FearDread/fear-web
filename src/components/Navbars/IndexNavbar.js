@@ -83,7 +83,7 @@ export default function IndexNavbar() {
             Design System React
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
-            Designed and Coded by Creative Tim
+            Fear Master Web & Media Server
           </UncontrolledTooltip>
           <button
             aria-expanded={collapseOpen}
@@ -176,15 +176,15 @@ export default function IndexNavbar() {
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/register-page">
                   <i className="tim-icons icon-bullet-list-67" />
-                  Register Page
+                  Register
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/landing-page">
                   <i className="tim-icons icon-image-02" />
-                  Landing Page
+                  Landing
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/profile-page">
                   <i className="tim-icons icon-single-02" />
-                  Profile Page
+                  Profile
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -193,9 +193,9 @@ export default function IndexNavbar() {
                 className="nav-link d-none d-lg-block"
                 color="primary"
                 target="_blank"
-                href="https://www.creative-tim.com/product/blk-design-system-pro-react?ref=bdsr-user-archive-index-navbar-upgrade-pro"
+                href=""
               >
-                <i className="tim-icons icon-spaceship" /> Upgrade to PRO
+                <i className="tim-icons icon-spaceship" /> Admin Login
               </Button>
             </NavItem>
             <NavItem>
@@ -204,7 +204,7 @@ export default function IndexNavbar() {
                 color="default"
                 onClick={scrollToDownload}
               >
-                <i className="tim-icons icon-cloud-download-93" /> Download
+                <i className="tim-icons icon-cloud-download-93" /> Sign Up
               </Button>
             </NavItem>
           </Nav>

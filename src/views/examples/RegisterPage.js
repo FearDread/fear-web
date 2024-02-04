@@ -37,10 +37,31 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
+import { register, clearErrors } from "../../actions/user.actions";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
+
+function signupHandler( event ) {
+  setLoading(true);
+  event.preventDefault();
+
+
+  if (password !== confirmPassword) {
+    alert.error("Password and Confirm Password do not match");
+    setLoading(false);
+    return;
+  }
+
+  const formData = new FormData();
+        formData.set("name", name);
+        formData.set("email", email);
+        formData.set("password", password);
+        formData.set("avatar", avatar);
+
+  dispatch( register(formData) );
+  setLoading(false);
+}
 
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
