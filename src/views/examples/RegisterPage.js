@@ -38,30 +38,12 @@ import {
   Col,
 } from "reactstrap";
 import { register, clearErrors } from "../../actions/user.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
-
-function signupHandler( event ) {
-  setLoading(true);
-  event.preventDefault();
-
-
-  if (password !== confirmPassword) {
-    alert.error("Password and Confirm Password do not match");
-    setLoading(false);
-    return;
-  }
-
-  const formData = new FormData();
-        formData.set("name", name);
-        formData.set("email", email);
-        formData.set("password", password);
-        formData.set("avatar", avatar);
-
-  dispatch( register(formData) );
-  setLoading(false);
-}
 
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
@@ -69,6 +51,121 @@ export default function RegisterPage() {
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+
+  const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidName, setIsValidName] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+  const [avatar, setAvatar] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [areCheckboxesChecked, setAreCheckboxesChecked] = useState({
+    checkbox1: false,
+    checkbox2: false,
+  });
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const { isAuthenticated, error } = useSelector((state) => state.userData);
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      alert.success("User Registered Successfully");
+      history.push("/account");
+    }
+  }, [dispatch, isAuthenticated, loading, error, alert , history]);
+
+  const handleEmailChange = (event) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+    setIsValidEmail(
+      newEmail !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)
+    );
+  };
+
+  const handleAvatarChange = (event) => {
+
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setAvatarPreview(reader.result);
+        setAvatar(reader.result);
+    
+      };
+    }
+  };
+
+  const handleNameChange = (event) => {
+    const newName = event.target.value;
+    setName(newName);
+    setIsValidName(newName.length >= 4 && newName.length <= 20);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+      setIsValidPassword(event.target.value.length >= 8);
+  };
+  const handleConfirmPasswordChange = (event) => {
+    setconfirmPassword(event.target.value);
+  };
+
+  const handleShowPasswordClick = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleCheckboxChange = (checkboxName) => (event) => {
+    setAreCheckboxesChecked((prevState) => ({
+      ...prevState,
+      [checkboxName]: event.target.checked,
+    }));
+  };
+
+  let isSignInDisabled = !(
+    email &&
+    password &&
+    isValidEmail &&
+    confirmPassword &&
+    name &&
+    isValidName &&
+    areCheckboxesChecked.checkbox1 &&
+    areCheckboxesChecked.checkbox2
+  );
+
+  function handleSignUpSubmit(e) {
+      setLoading(true);
+    e.preventDefault();
+  
+
+    if (password !== confirmPassword) {
+      alert.error("Password and Confirm Password do not match");
+      setLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.set("name", name);
+    formData.set("email", email);
+    formData.set("password", password);
+    formData.set("avatar", avatar);
+
+    dispatch( register(formData) );
+    setLoading( false );
+  }
+
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
