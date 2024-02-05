@@ -35,8 +35,10 @@ export default function PageHeader() {
           <h1 className="h1-seo">FEAR• Master</h1>
           <h3 className="d-none d-sm-block">
             Welocme to the fear.master Optiplex Web Server.
-              -- Acces Requires Admin Authorization --
           </h3>
+          <h4> 
+            -- Acces Requires Admin Authorization --
+          </h4>
         </div>
       </Container>
     </div>

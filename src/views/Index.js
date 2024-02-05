@@ -50,6 +50,8 @@ export default function Index() {
         <PageHeader />
         <div className="main">
           <Tabs />
+          <Examples />
+          <JavaScript />
           <Signup />
         </div>
         <Footer />
