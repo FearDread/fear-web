@@ -15,8 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
+// import { useDispatch, useSelector } from "react-redux";
 // reactstrap components
 import {
   Button,
@@ -38,9 +39,9 @@ import {
   Col,
 } from "reactstrap";
 import { register, clearErrors } from "../../actions/user.actions";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
@@ -52,7 +53,7 @@ export default function RegisterPage() {
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
 
-  const classes = useStyles();
+  //const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -69,17 +70,18 @@ export default function RegisterPage() {
     checkbox1: false,
     checkbox2: false,
   });
-  const history = useHistory();
-
-  const dispatch = useDispatch();
+  //const history = useHistory();
+  const history = [];
+  // const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { isAuthenticated, error } = useSelector((state) => state.userData);
-
+ // const { isAuthenticated, error } = useSelector((state) => state.userData);
+  /*
   useEffect(() => {
     if (error) {
       alert.error(error);
-      dispatch(clearErrors());
+      clearErrors();
+      //dispatch(clearErrors());
     }
 
     if (isAuthenticated) {
@@ -87,7 +89,7 @@ export default function RegisterPage() {
       history.push("/account");
     }
   }, [dispatch, isAuthenticated, loading, error, alert , history]);
-
+*/
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
     setEmail(newEmail);
@@ -162,7 +164,8 @@ export default function RegisterPage() {
     formData.set("password", password);
     formData.set("avatar", avatar);
 
-    dispatch( register(formData) );
+    register( formData );
+    //dispatch( register(formData) );
     setLoading( false );
   }
 
@@ -290,7 +293,8 @@ export default function RegisterPage() {
                       </Form>
                     </CardBody>
                     <CardFooter>
-                      <Button className="btn-round" color="primary" size="lg">
+                      <Button className="btn-round" color="primary" size="lg"
+                        onClick={(handleSignUpSubmit())}>
                         Get Started
                       </Button>
                     </CardFooter>

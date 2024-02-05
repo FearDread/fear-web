@@ -51,7 +51,7 @@ export default function IndexNavbar() {
       document.documentElement.scrollTop > 99 ||
       document.body.scrollTop > 99
     ) {
-      setColor("bg-info");
+      setColor("bg-darker");
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
@@ -79,11 +79,11 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>BLK• </span>
-            Design System React
+            Fear Master Web & Media Server
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
-            Fear Master Web & Media Server
+            <span>BLK• </span>
+            Design System React
           </UncontrolledTooltip>
           <button
             aria-expanded={collapseOpen}
