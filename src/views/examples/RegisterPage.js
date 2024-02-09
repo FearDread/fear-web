@@ -41,7 +41,7 @@ import {
 
 
 import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
+import { useHistor, useDispatch } from "react-router-dom";
 import { register, clearErrors } from "../../actions/user.actions";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
@@ -71,11 +71,12 @@ export default function RegisterPage() {
     checkbox1: false,
     checkbox2: false,
   });
-  /onst history = useHistory();
+ // const history = useHistory();
+  const history = [];
   const dispatch = useDispatch();
   const alert = useAlert();
+  const { isAuthenticated, error } = React.useSelector((state) => state.userData);
 
-  const { isAuthenticated, error } = useSelector((state) => state.userData);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -106,7 +107,6 @@ export default function RegisterPage() {
       reader.onload = () => {
         setAvatarPreview(reader.result);
         setAvatar(reader.result);
-    
       };
     }
   };
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                             placeholder="Full Name"
                             type="text"
                             onFocus={(e) => setFullNameFocus(true)}
-                            onBlur={(e) => setFullNameFocus(false)}
+                            onBlur={(e) => setFullNameFocus(false)} 
                           />
                         </InputGroup>
                         <InputGroup
