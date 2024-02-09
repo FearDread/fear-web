@@ -38,20 +38,21 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { register, clearErrors } from "../../actions/user.actions";
+
 
 import { useAlert } from "react-alert";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { register, clearErrors } from "../../actions/user.actions";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
 
 export default function RegisterPage() {
-  const [squares1to6, setSquares1to6] = React.useState("");
-  const [squares7and8, setSquares7and8] = React.useState("");
-  const [fullNameFocus, setFullNameFocus] = React.useState(false);
-  const [emailFocus, setEmailFocus] = React.useState(false);
-  const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [squares1to6, setSquares1to6] = useState("");
+  const [squares7and8, setSquares7and8] = useState("");
+  const [fullNameFocus, setFullNameFocus] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
   //const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
@@ -70,18 +71,16 @@ export default function RegisterPage() {
     checkbox1: false,
     checkbox2: false,
   });
-  //const history = useHistory();
-  const history = [];
-  // const dispatch = useDispatch();
+  /onst history = useHistory();
+  const dispatch = useDispatch();
   const alert = useAlert();
 
- // const { isAuthenticated, error } = useSelector((state) => state.userData);
-  /*
+  const { isAuthenticated, error } = useSelector((state) => state.userData);
   useEffect(() => {
     if (error) {
       alert.error(error);
       clearErrors();
-      //dispatch(clearErrors());
+      dispatch( clearErrors() );
     }
 
     if (isAuthenticated) {
@@ -89,7 +88,7 @@ export default function RegisterPage() {
       history.push("/account");
     }
   }, [dispatch, isAuthenticated, loading, error, alert , history]);
-*/
+
   const handleEmailChange = (event) => {
     const newEmail = event.target.value;
     setEmail(newEmail);

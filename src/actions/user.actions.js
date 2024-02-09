@@ -39,6 +39,28 @@ import {
     DELETE_USER_SUCCESS,
   } from "../variables/constants";
 
+  export function login(email, password) {
+
+    return async function (dispatch) {
+      try {
+        dispatch({ type: LOGIN_REQUEST });
+  
+        const config = { headers: { "Content-Type": "application/json" } };
+  
+        const { data } = await axios.post(
+          `/fear/api/login`,
+          { email, password },
+          config
+        );
+  
+        dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+      } catch (error) {
+  
+        dispatch({ type: LOGIN_FAIL, payload: error.message });
+      }
+    };
+  }
+
 // resgister user
 export function register(signupData) {
 
