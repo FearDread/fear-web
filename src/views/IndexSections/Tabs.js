@@ -36,7 +36,7 @@ export default function Tabs() {
   const [iconTabs, setIconsTabs] = React.useState(1);
   const [textTabs, setTextTabs] = React.useState(4);
   return (
-    <div className="section section-tabs">
+    <div className="section section-tabs section-dark-bg">
       <Container>
         <div className="title">
           <h3 className="mb-3">Navigation Tabs</h3>

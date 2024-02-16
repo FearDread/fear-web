@@ -27,7 +27,7 @@ export default function Signup() {
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
   return (
-    <div className="section section-signup">
+    <div className="section section-signup section-dark-bg">
       <Container>
         <div className="squares square-1" />
         <div className="squares square-2" />
