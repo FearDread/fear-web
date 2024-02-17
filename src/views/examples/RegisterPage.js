@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect, useDispatch } from "react";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 // import { useDispatch, useSelector } from "react-redux";
 // reactstrap components
@@ -41,7 +41,7 @@ import {
 
 
 import { useAlert } from "react-alert";
-//import { useHistory, useDispatch } from "react-router-dom";
+import { useHistory, useDispatch } from "react-router-dom";
 import { register, clearErrors } from "../../actions/user.actions";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";

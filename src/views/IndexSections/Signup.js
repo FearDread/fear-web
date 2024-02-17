@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useDispatch, useSelector } from "react";
+import React, { useState, useEffect, useSelector } from "react";
 import classnames from "classnames";
-import { useAlert } from "react-alert";
+//import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -36,21 +36,21 @@ export default function Signup() {
   const [confirmPassword, setconfirmPassword] = useState(false);
   const [avatar, setAvatar] = useState("");
 
-  const dispatch = useDispatch();
-  const alert = useAlert();
-  const { isAuthenticated, error } = useSelector((state) => state.userData);
+  //const dispatch = useDispatch();
+  //const alert = useAlert();
+  // const { isAuthenticated, error } = useSelector((state) => state.userData);
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
+  //useEffect(() => {
+    //if (error) {
+      //.error(error);
       //dispatch(clearErrors());
-    }
+    //}
 
-    if (isAuthenticated) {
-      alert.success("User Registered Successfully");
+    //if (isAuthenticated) {
+      //alert.success("User Registered Successfully");
       //history.push("/account");
-    }
-  }, [dispatch, isAuthenticated, error, alert ]);
+    //}
+  //}, [ isAuthenticated, error, alert ]);
 
   function handleSignUpSubmit(e) {
     //setLoading(true);
@@ -58,7 +58,7 @@ export default function Signup() {
 
 
     if (password !== confirmPassword) {
-      alert.error("Password and Confirm Password do not match");
+      //alert.error("Password and Confirm Password do not match");
       //setLoading(false);
       return;
     }
@@ -69,7 +69,8 @@ export default function Signup() {
     formData.set("password", password);
     formData.set("avatar", avatar);
 
-    dispatch(register(formData));
+    register(formData);
+    //dispatch(register(formData));
   }
 
 
