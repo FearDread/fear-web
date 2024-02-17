@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useDispatch, useSelector } from "react";
 import classnames from "classnames";
+import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -19,13 +20,59 @@ import {
   InputGroup,
   Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
+import {register, login} from "../../actions/user.actions";
 
 export default function Signup() {
+
   const [fullNameFocus, setFullNameFocus] = React.useState(false);
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
+
+  const [name, setName] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [password, setPassword] = useState(false);
+  const [confirmPassword, setconfirmPassword] = useState(false);
+  const [avatar, setAvatar] = useState("");
+
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const { isAuthenticated, error } = useSelector((state) => state.userData);
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      //dispatch(clearErrors());
+    }
+
+    if (isAuthenticated) {
+      alert.success("User Registered Successfully");
+      //history.push("/account");
+    }
+  }, [dispatch, isAuthenticated, error, alert ]);
+
+  function handleSignUpSubmit(e) {
+    //setLoading(true);
+    e.preventDefault();
+
+
+    if (password !== confirmPassword) {
+      alert.error("Password and Confirm Password do not match");
+      //setLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.set("name", name);
+    formData.set("email", email);
+    formData.set("password", password);
+    formData.set("avatar", avatar);
+
+    dispatch(register(formData));
+  }
+
+
   return (
     <div className="section section-signup section-dark-bg">
       <Container>
@@ -76,8 +123,10 @@ export default function Signup() {
                     <Input
                       placeholder="Full Name"
                       type="text"
+                      value={name}
                       onFocus={(e) => setFullNameFocus(true)}
                       onBlur={(e) => setFullNameFocus(false)}
+                      onChange={setName}
                     />
                   </InputGroup>
                   <InputGroup
@@ -93,8 +142,10 @@ export default function Signup() {
                     <Input
                       placeholder="Email"
                       type="text"
+                      value={email}
                       onFocus={(e) => setEmailFocus(true)}
                       onBlur={(e) => setEmailFocus(false)}
+                      onChange={setEmail}
                     />
                   </InputGroup>
                   <InputGroup
@@ -110,8 +161,10 @@ export default function Signup() {
                     <Input
                       placeholder="Password"
                       type="text"
+                      value={password}
                       onFocus={(e) => setPasswordFocus(true)}
                       onBlur={(e) => setPasswordFocus(false)}
+                      onChange={setPassword}
                     />
                   </InputGroup>
                   <FormGroup check className="text-left">
@@ -127,9 +180,7 @@ export default function Signup() {
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="btn-round" color="primary" size="lg" onClick={(e) => {
-                  
-                }}>
+                <Button className="btn-round" color="primary" size="lg" onClick={handleSignUpSubmit}>
                   Get Started
                 </Button>
               </CardFooter>

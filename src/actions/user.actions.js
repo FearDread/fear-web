@@ -48,7 +48,7 @@ import {
         const config = { headers: { "Content-Type": "application/json" } };
   
         const { data } = await axios.post(
-          `/fear/api/login`,
+          `http://fear.master.com:4000/fear/api/login`,
           { email, password },
           config
         );

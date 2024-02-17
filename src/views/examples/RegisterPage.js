@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDispatch } from "react";
 import classnames from "classnames";
 // import { useDispatch, useSelector } from "react-redux";
 // reactstrap components
@@ -41,7 +41,7 @@ import {
 
 
 import { useAlert } from "react-alert";
-import { useHistor, useDispatch } from "react-router-dom";
+//import { useHistory, useDispatch } from "react-router-dom";
 import { register, clearErrors } from "../../actions/user.actions";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
@@ -73,8 +73,8 @@ export default function RegisterPage() {
   });
  // const history = useHistory();
   const history = [];
-  const dispatch = useDispatch();
-  const alert = useAlert();
+  const dispatch = React.useDispatch();
+  const alert = React.useAlert();
   const { isAuthenticated, error } = React.useSelector((state) => state.userData);
 
   useEffect(() => {
@@ -163,8 +163,8 @@ export default function RegisterPage() {
     formData.set("password", password);
     formData.set("avatar", avatar);
 
-    register( formData );
-    //dispatch( register(formData) );
+    //register( formData );
+    dispatch( register(formData) );
     setLoading( false );
   }
 
@@ -238,6 +238,7 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Full Name"
                             type="text"
+                            value={name}
                             onFocus={(e) => setFullNameFocus(true)}
                             onBlur={(e) => setFullNameFocus(false)} 
                           />
@@ -255,6 +256,7 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Email"
                             type="text"
+                            value={email}
                             onFocus={(e) => setEmailFocus(true)}
                             onBlur={(e) => setEmailFocus(false)}
                           />
@@ -272,6 +274,7 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Password"
                             type="text"
+                            value={password}
                             onFocus={(e) => setPasswordFocus(true)}
                             onBlur={(e) => setPasswordFocus(false)}
                           />

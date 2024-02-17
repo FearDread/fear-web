@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
+  Label,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
   Collapse,
   DropdownToggle,
   DropdownMenu,
@@ -16,12 +23,18 @@ import {
   Container,
   Row,
   Col,
+  Modal,
   UncontrolledTooltip,
 } from "reactstrap";
+import {login, register} from "../../actions/user.actions";
 
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
+  const [formModal, setFormModal] = React.useState(false);
+  const [fullNameFocus, setFullNameFocus] = React.useState(false);
+  const [emailFocus, setEmailFocus] = React.useState(false);
+  const [passwordFocus, setPasswordFocus] = React.useState(false);
   const [color, setColor] = React.useState("navbar-transparent");
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
@@ -29,6 +42,9 @@ export default function IndexNavbar() {
       window.removeEventListener("scroll", changeColor);
     };
   }, []);
+  const loginHandler = function () {
+
+  }
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -177,6 +193,7 @@ export default function IndexNavbar() {
                 color="primary"
                 target="_blank"
                 href=""
+                onClick={() => setFormModal(true)}
               >
                 <i className="tim-icons icon-spaceship" /> Admin Login
               </Button>
@@ -192,7 +209,89 @@ export default function IndexNavbar() {
             </NavItem>
           </Nav>
         </Collapse>
+        <Modal
+            modalClassName="modal-black"
+            isOpen={formModal}
+            toggle={() => setFormModal(false)}
+          >
+            <div className="modal-header justify-content-center">
+              <button className="close" onClick={() => setFormModal(false)}>
+                <i className="tim-icons icon-simple-remove text-white" />
+              </button>
+              <div className="text-muted text-center ml-auto mr-auto">
+                <h3 className="mb-0">Sign in with</h3>
+              </div>
+            </div>
+            <div className="modal-body">
+              <div className="btn-wrapper text-center">
+                <Button
+                  className="btn-neutral btn-icon"
+                  color="default"
+                  href="#pablo"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <img alt="..." src={require("assets/img/github.svg")} />
+                </Button>
+                <Button
+                  className="btn-neutral btn-icon"
+                  color="default"
+                  href="#pablo"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <img alt="..." src={require("assets/img/google.svg")} />
+                </Button>
+              </div>
+              <div className="text-center text-muted mb-4 mt-3">
+                <small>Or sign in with credentials</small>
+              </div>
+              <Form role="form">
+                <FormGroup className="mb-3">
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="tim-icons icon-email-85" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      onFocus={(e) => setEmailFocus(true)}
+                      onBlur={(e) => setEmailFocus(false)}
+                    />
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="tim-icons icon-key-25" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      onFocus={(e) => setPasswordFocus(true)}
+                      onBlur={(e) => setPasswordFocus(false)}
+                    />
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup check className="mt-3">
+                  <Label check>
+                    <Input defaultChecked type="checkbox" />
+                    <span className="form-check-sign" />
+                    Remember me!
+                  </Label>
+                </FormGroup>
+                <div className="text-center">
+                  <Button className="my-4" color="primary" type="button">
+                    Sign in
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </Modal>
       </Container>
     </Navbar>
+    
   );
 }
