@@ -1,15 +1,15 @@
 {
-  "name": "F-E-A-R Home",
+  "name": "fear-master",
   "version": "1.0",
   "description": "React version of BLK Design System",
   "main": "index.js",
-  "author": "FearDread - F-E-A-R",
+  "author": "FearDread",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FearDread/fear_web.git"
   },
-  "homepage": ".",
+  "homepage": "/home",
   "keywords": [
     "react",
     "reactjs",

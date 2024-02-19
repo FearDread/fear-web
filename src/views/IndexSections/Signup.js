@@ -22,7 +22,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import {register, login} from "../../actions/user.actions";
+import {register, login} from "actions/user.actions";
 
 export default function Signup() {
 
