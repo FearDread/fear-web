@@ -1,5 +1,5 @@
 {
-  "name": "fear-master",
+  "name": "fear-web",
   "version": "1.0",
   "description": "React version of BLK Design System",
   "main": "index.js",
@@ -9,7 +9,6 @@
     "type": "git",
     "url": "git+https://github.com/FearDread/fear_web.git"
   },
-  "homepage": "/home",
   "keywords": [
     "react",
     "reactjs",

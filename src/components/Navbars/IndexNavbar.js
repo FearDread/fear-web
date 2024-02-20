@@ -26,7 +26,7 @@ import {
   Modal,
   UncontrolledTooltip,
 } from "reactstrap";
-import {login, register} from "../../actions/user.actions";
+import {login, register} from "../../actions/user";
 
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);

@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* BLK Design System React - v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 // import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +26,7 @@ import {
 
 import { useAlert } from "react-alert";
 import { useHistory, useDispatch } from "react-router-dom";
-import { register, clearErrors } from "../../actions/user.actions";
+import { register, clearErrors } from "../../actions/user";
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
