@@ -30,9 +30,10 @@ export default function Signup() {
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
 
-  const [name, setName] = useState(false);
-  const [email, setEmail] = useState(false);
-  const [password, setPassword] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [confirmPassword, setconfirmPassword] = useState(false);
   const [avatar, setAvatar] = useState("");
 
@@ -55,8 +56,6 @@ export default function Signup() {
   function handleSignUpSubmit(e) {
     //setLoading(true);
     e.preventDefault();
-
-
     if (password !== confirmPassword) {
       //alert.error("Password and Confirm Password do not match");
       //setLoading(false);

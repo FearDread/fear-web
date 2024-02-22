@@ -22,7 +22,7 @@ import { Button, Container, Row, Col } from "reactstrap";
 
 export default function Examples() {
   return (
-    <div className="section section-examples" data-background-color="black">
+    <div className="section section-examples section-dark-bg" data-background-color="black">
       <img alt="..." className="path" src={require("assets/img/path1.png")} />
       <div className="space-50" />
       <Container className="text-center">

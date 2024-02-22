@@ -56,9 +56,7 @@ export default function Index() {
    <span></span>
    <span></span>
 </div>
-          <Tabs />
           <Examples />
-          <JavaScript />
           <Signup />
         </div>
         <Footer />

@@ -42,7 +42,7 @@ export default function IndexNavbar() {
       window.removeEventListener("scroll", changeColor);
     };
   }, []);
-  const loginHandler = function () {
+  const handleLoginSubmit = function (r) {
 
   }
   const changeColor = () => {
@@ -257,6 +257,7 @@ export default function IndexNavbar() {
                       type="email"
                       onFocus={(e) => setEmailFocus(true)}
                       onBlur={(e) => setEmailFocus(false)}
+                      onChange={(e) => setEmailFocus}
                     />
                   </InputGroup>
                 </FormGroup>
@@ -283,7 +284,8 @@ export default function IndexNavbar() {
                   </Label>
                 </FormGroup>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button className="my-4" color="primary" type="button"
+                    onClick={handleLoginSubmit} >
                     Sign in
                   </Button>
                 </div>
